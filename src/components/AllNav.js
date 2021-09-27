@@ -9,8 +9,9 @@ function AllNav() {
   if (role === "Admin" || role === "BranchManager" || role === "DeliveryManager") {
     return <AdminPanel />;
   } else {
-    return <CustomerDashboard />;
-  }
+    return <CustomerDashboard />
+  };
+  
 }
 
 export default AllNav;
