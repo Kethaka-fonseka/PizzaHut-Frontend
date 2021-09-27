@@ -11,9 +11,11 @@ import {GrNext, MdAddShoppingCart} from "react-icons/all";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 function Cart(props) {
     const [products, setProducts] = useState([]);
+    const history=useHistory();
 
 
     useEffect(() => {
@@ -59,6 +61,17 @@ function Cart(props) {
 
         })
         return total;
+    }
+
+    //This function navigate to the checkout
+
+    function continueToCheckout(){
+     history.push({
+       pathname:"/checkout",
+         state:{
+        total:getTotal()
+        }
+     })
     }
 
     //This function use to update product qty(decrement the count)
@@ -232,7 +245,9 @@ function Cart(props) {
                                         color: "white",
                                         padding: "10px 20px 8px 20px"
                                     }
-                            }>
+                            }
+                            onClick={continueToCheckout}
+                            >
                                 Continue
                             </Button>
                         </Col>
