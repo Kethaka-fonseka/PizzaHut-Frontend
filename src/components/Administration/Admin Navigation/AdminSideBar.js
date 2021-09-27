@@ -74,7 +74,7 @@ function AdminSideBar(props) {
     });
   } 
 
-  if(localStorage.getItem("user") === "Admin"){
+  if("Admin" === "Admin"){
 
     return (
       <div className="sidebar-container">
