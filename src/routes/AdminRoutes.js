@@ -49,7 +49,6 @@ function AdminRoutes(props) {
 
       <Route path="/admin/delivery" component={Delivery} />
       <Route path="/admin/dashboard" component={Dashboard} />
-      <Route path="/admin/payments" component={Payments} />
       <Route path="/admin/view-order" component={ViewOrder} />
       <Route path="/admin/orders" component={Orders} />
 
