@@ -41,7 +41,7 @@ function Login() {
             );
           } else if (response.data.users.Role === "User") {
             localStorage.setItem("user", "User");
-
+            localStorage.setItem("Email", response.data.users.Email);
             localStorage.setItem("userName", response.data.users.FirstName);
             NotificationManager.success("Success", "Login Success");
             setTimeout(
@@ -79,7 +79,7 @@ function Login() {
                 1000
             );
           }
-        })
+        }) 
         .catch((err) => {
           NotificationManager.warning("Warning", "Invalid Credentials ", 3000);
         });
