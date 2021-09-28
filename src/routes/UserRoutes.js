@@ -2,13 +2,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "../components/Customer/Main Pages/Home";
-// import Payment from "../components/Customer/Checkout/Payment";
+import Payment from "../components/Customer/Checkout/Payment";
 import login from "../components/Authentications/Login";
 import SignUp from "../components/Authentications/SignUp";
 import Menu from "../components/Customer/Menu";
 import Cart from "../components/Customer/Main Pages/Cart";
-import Checkout from "../components/Customer/Main Pages/Checkout";
-import Payment from "../components/Customer/Main Pages/Payment"
+// import Checkout from "../components/Customer/Main Pages/Checkout";
+// import Payment from "../components/Customer/Main Pages/Payment"
 function UserRoutes() {
   return (
     <>
@@ -24,7 +24,7 @@ function UserRoutes() {
         
       <Route path="/signUp" component={SignUp} />
 
-      <Route path="/checkout" component={Checkout} />
+      {/* <Route path="/checkout" component={Payment} /> */}
 
       <Route path="/payment" component={Payment} />
     </>
