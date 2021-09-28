@@ -52,6 +52,7 @@ const SingleProduct = (props) => {
       id: props.product._id,
       price: price,
       title: props.product.title,
+      product: props.product.image,
       size: size,
     };
 

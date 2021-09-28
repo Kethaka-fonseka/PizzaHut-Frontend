@@ -7,7 +7,6 @@ import {
     Table
 } from "react-bootstrap";
 import {Button, Grid, Paper, Typography} from "@material-ui/core";
-import {GrNext, MdAddShoppingCart} from "react-icons/all";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import axios from "axios";
@@ -15,8 +14,8 @@ import { useHistory } from "react-router";
 
 function Cart(props) {
     const [products, setProducts] = useState([]);
-    const history=useHistory();
 
+    const history=useHistory();
 
     useEffect(() => {
         axios.get("http://localhost:8070/carts").then((res) => {
@@ -26,7 +25,21 @@ function Cart(props) {
         });
     }, [6]);
 
-//remove products using product id
+
+ //This function navigate to the checkout
+ function continueToCheckout(){
+
+    history.push({
+      pathname:'/payment',
+        state:{
+       total:getTotal(),
+       product: products
+       }
+    })
+   }
+
+
+    //remove products using product id
     const removeProduct = (product) => {
         axios.delete(`http://localhost:8070/carts/delete/${
             product._id
@@ -38,7 +51,7 @@ function Cart(props) {
             console.log("err=>" + err);
         });
     }
-//This function is to update the product qty of product in the cart 
+    //This function is to update the product qty of product in the cart 
     function increamentCount(p) {
         const qty = p.qty + 1;
         const product = {
@@ -53,7 +66,7 @@ function Cart(props) {
             console.log(err);
         })
     }
-//This function use to get total amount of cost of the cart items
+    //This function use to get total amount of cost of the cart items
     function getTotal() {
         let total = 0;
         products.map(product => {
@@ -62,18 +75,6 @@ function Cart(props) {
         })
         return total;
     }
-
-    //This function navigate to the checkout
-
-    function continueToCheckout(){
-     history.push({
-       pathname:"/checkout",
-         state:{
-        total:getTotal()
-        }
-     })
-    }
-
     //This function use to update product qty(decrement the count)
     function decreamentCount(p) {
         if (p.qty > 0) {
