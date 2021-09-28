@@ -13,7 +13,6 @@ function SignUp() {
     const [LastName, setLastName] = useState("");
     const [Email, setEmail] = useState("");
     const [Contact, setContact] = useState("");
-    const [Address, setAddress] = useState("");
     const [Password, setPassword] = useState("");
     const [CPassword, setCPassword] = useState("");
 
@@ -23,7 +22,6 @@ function SignUp() {
             LastName,
             Email,
             Contact,
-            Address,
             Password,
             CPassword
         }
@@ -87,11 +85,6 @@ function SignUp() {
                             <Form.Control type="text" placeholder="Phone Number" onChange={(e) => {setContact(e.target.value);}} />
                         </Form.Group>
                     </Row>
-
-                    <Form.Group as={Col} controlId="formGridAddress">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control type="text" placeholder="Address" onChange={(e) => {setAddress(e.target.value);}} />
-                    </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridEmail">
 
