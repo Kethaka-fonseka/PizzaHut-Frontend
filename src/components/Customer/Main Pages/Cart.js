@@ -19,7 +19,7 @@ function Cart(props) {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8070/carts").then((res) => {
+        axios.get(`http://localhost:8070/carts/${localStorage.getItem("userid")}`).then((res) => {
             setProducts(res.data);
         }).catch((err) => {
             console.log("err=>" + err);
