@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import {
   Container,
@@ -30,11 +30,16 @@ import { Link } from 'react-router-dom';
 
 function CustomerNavbar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [text,setText]=useState('');
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+//This function handles the parts that realated to the search bar
+const search=()=>{
+  window.location=`/search/${text}`;
+}
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -111,11 +116,16 @@ function CustomerNavbar(props) {
               placeholder="Search"
               aria-label="Search"
               className={"bar"}
+              onChange={(e)=>{
+                setText(e.target.value);
+              }}
             />
 
             <Button
               className={"search-button"}
-              startIcon={<IoSearchOutline style={{ color: "white" }} />}
+              startIcon={<IoSearchOutline style={{ color: "white" }}
+              onClick={search}
+              />}
             />
           </Form>
 
