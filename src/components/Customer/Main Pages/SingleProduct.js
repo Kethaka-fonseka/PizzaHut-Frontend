@@ -58,7 +58,7 @@ const SingleProduct = (props) => {
       image:props.product.image
     };
     axios
-      .get(`http://localhost:8070/carts/${props.product._id}/${size}`)
+      .get(`http://localhost:8070/carts/${localStorage.getItem("userid")}/${props.product._id}/${size}`)
       .then((res) => {
      const Item=res.data[0];
      return Item;
