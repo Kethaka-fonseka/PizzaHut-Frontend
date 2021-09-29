@@ -9,6 +9,7 @@ import Menu from "../components/Customer/Menu";
 import Cart from "../components/Customer/Main Pages/Cart";
 import Checkout from "../components/Customer/Main Pages/Checkout";
 import Payment from "../components/Customer/Main Pages/Payment"
+import Search from "../components/Customer/Main Pages/Search";
 function UserRoutes() {
   return (
     <>
@@ -27,6 +28,8 @@ function UserRoutes() {
       <Route path="/checkout" component={Checkout} />
 
       <Route path="/payment" component={Payment} />
+
+      <Route path="/search/:keyword" component={Search} />
     </>
   );
 }
