@@ -9,7 +9,8 @@ function AllNav() {
   if (role === "Admin" || role === "BranchManager" || role === "DeliveryManager") {
     return <AdminPanel />;
   } else {
-    return <CustomerDashboard />
+    return <AdminPanel />;
+    //<CustomerDashboard />
   };
   
 }
