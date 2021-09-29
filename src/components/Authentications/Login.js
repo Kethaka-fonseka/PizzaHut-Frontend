@@ -12,6 +12,15 @@ import {
 } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 
+
+let myCurrentDate = new Date();
+let date = myCurrentDate.getDate();
+let month = myCurrentDate.getMonth() + 1;
+let year = myCurrentDate.getFullYear();
+let time =  myCurrentDate.getHours() + ':' + myCurrentDate.getMinutes();
+let Dates = year + " / " + month + " / " + date;
+
+
 //Login function
 function Login() {
   const [Email, setEmail] = useState("");
@@ -24,6 +33,8 @@ function Login() {
     const data = {
       Email,
       Password,
+      Dates,
+      time
     };
 
     axios
@@ -35,7 +46,7 @@ function Login() {
             NotificationManager.success("Success", "Login Success");
             setTimeout(
                 function () {
-                  window.location.href = "/admin/view-employees";
+                  window.location.href = "/admin/dashboard";
                 }.bind(this),
                 1000
             );
