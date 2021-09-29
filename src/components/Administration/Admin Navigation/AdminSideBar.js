@@ -245,7 +245,7 @@ function AdminSideBar(props) {
                 </span>
               </a>
               <div className="dropdown-container">
-                <a href={"/admin/payments"} className="list-item">
+                <a href={"/admin/payment/management"} className="list-item">
                   <span className="sub-icon">
                     <FaEye className="ic" />
                   </span>
