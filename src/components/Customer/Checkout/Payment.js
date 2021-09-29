@@ -79,7 +79,7 @@ const data ={
 }
 
 axios
-.post("http://localhost:8070/place-order/add", data)
+.post("http://localhost:8070/payment/add", data)
 .then((response) => {
 
   if(response.data.Message == "Error"){
