@@ -17,6 +17,8 @@ class ViewRecords extends Component {
       Branch:"",
       Contact: "",
       Profile: "",
+      Time: "",
+      Date: "",
     };
   }
   componentDidMount() {
@@ -33,6 +35,8 @@ class ViewRecords extends Component {
           Branch: response.data.UserManagement.Branch,
           Contact: response.data.UserManagement.Contact,
           Profile: response.data.UserManagement.Profile,
+          Date:response.data.UserManagement.LastLoginDate,
+          Time:response.data.UserManagement.LastLoginTime
         });
       })
       .catch(function (err) {
@@ -135,6 +139,32 @@ class ViewRecords extends Component {
                         </div>
                         <p>{this.state.Contact}</p>
                       </div>
+
+                      <div class='input-group mb-3' style={{ width: "600px" }}>
+                        <div style={{ width: "300px" }}>
+                          <span>
+                            <p style={{ float: "left", marginLeft: "80px" }}>
+                              Last Login Time
+                              <span style={{ color: "red" }}>&#42;:</span>
+                            </p>
+                          </span>
+                        </div>
+                        <p>{this.state.Time}</p>
+                      </div>
+
+
+                      <div class='input-group mb-3' style={{ width: "600px" }}>
+                        <div style={{ width: "300px" }}>
+                          <span>
+                            <p style={{ float: "left", marginLeft: "80px" }}>
+                              Last Login Date
+                              <span style={{ color: "red" }}>&#42;:</span>
+                            </p>
+                          </span>
+                        </div>
+                        <p>{this.state.Date}</p>
+                      </div>
+
                     </form>
                   </div>
                 </div>
