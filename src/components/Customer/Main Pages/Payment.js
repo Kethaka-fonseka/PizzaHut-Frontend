@@ -29,6 +29,7 @@ const newOrder={
     order_date:new Date().toLocaleString(),
     status:"new",
     user:localStorage.getItem("userid"),
+    delivery_code:deliveryCode
 }
 
 axios.post('http://localhost:8070/orders/add',newOrder).then((res)=>{
