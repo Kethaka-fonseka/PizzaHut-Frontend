@@ -16,11 +16,17 @@ import { useHistory } from "react-router";
 function Cart(props) {
     const [products, setProducts] = useState([]);
     const history=useHistory();
+    const [total,setTotal]=useState(0);
 
 
     useEffect(() => {
         axios.get(`http://localhost:8070/carts/${localStorage.getItem("userid")}`).then((res) => {
             setProducts(res.data);
+        }).then(()=>{
+axios.get(`http://localhost:8070/carts/total/${localStorage.getItem("userid")}`).then(res=>{
+    setTotal(res.data.total);
+    console.log(total);
+})
         }).catch((err) => {
             console.log("err=>" + err);
         });
@@ -55,12 +61,7 @@ function Cart(props) {
     }
 //This function use to get total amount of cost of the cart items
     function getTotal() {
-        let total = 0;
-        products.map(product => {
-            total += (product.price * product.qty);
-
-        })
-        return total;
+      return total;
     }
 
     //This function navigate to the checkout
@@ -69,7 +70,7 @@ function Cart(props) {
      history.push({
        pathname:"/checkout",
          state:{
-        total:getTotal()
+        total:total
         }
      })
     }
@@ -204,7 +205,7 @@ function Cart(props) {
                                         <td className={"bill-fields text-right "}
                                             width={25}>
                                             {
-                                            'Rs ' + getTotal() + '.00'
+                                            'Rs ' + total + '.00'
                                         } </td>
                                     </tr>
                                     <tr>
@@ -228,7 +229,7 @@ function Cart(props) {
                                                 <div className={"p-2"}>Net Total:</div>
                                                 <div className={"p-2"}>
                                                     {
-                                                    'Rs ' + getTotal() + '.00'
+                                                    'Rs ' +total+ '.00'
                                                 }</div>
                                             </div>
                                         </td>
@@ -247,6 +248,7 @@ function Cart(props) {
                                     }
                             }
                             onClick={continueToCheckout}
+                            disabled={true}
                             >
                                 Continue
                             </Button>
