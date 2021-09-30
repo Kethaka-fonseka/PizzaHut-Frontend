@@ -80,7 +80,8 @@ const SingleProduct = (props) => {
               alert("product successfully added to the cart");
             });
         } else {
-          axios
+          if(cartItem.price>0){
+            axios
             .post(`http://localhost:8070/carts/add`, cartItem)
             .then((res) => {
               console.log(res);
@@ -90,6 +91,9 @@ const SingleProduct = (props) => {
               console.log(cartItem)
               console.log(err);
             });
+          }else{
+            alert('This size isnt available right now')
+          }
         }
       });
     setModelView(false);
