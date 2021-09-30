@@ -17,6 +17,7 @@ function Cart(props) {
     const [products, setProducts] = useState([]);
     const history=useHistory();
     const [total,setTotal]=useState(0);
+    const [value,setValue]=useState(0);
 
 
     useEffect(() => {
@@ -25,12 +26,11 @@ function Cart(props) {
         }).then(()=>{
 axios.get(`http://localhost:8070/carts/total/${localStorage.getItem("userid")}`).then(res=>{
     setTotal(res.data.total);
-    console.log(total);
 })
         }).catch((err) => {
             console.log("err=>" + err);
-        });
-    }, [6]);
+        }); 
+    }, [value]);
 
 //remove products using product id
     const removeProduct = (product) => {
@@ -38,7 +38,7 @@ axios.get(`http://localhost:8070/carts/total/${localStorage.getItem("userid")}`)
             product._id
         }`).then((res) => {
             alert("Item Deleted!!!!")
-            window.location = "/cart";
+            setValue(value+1);
 
         }).catch((err) => {
             console.log("err=>" + err);
@@ -53,26 +53,26 @@ axios.get(`http://localhost:8070/carts/total/${localStorage.getItem("userid")}`)
         axios.patch(`http://localhost:8070/carts/update/${
             p._id
         }`, product).then(res => {
-            alert('update the qty!!!')
-            window.location = "/cart"
+            setValue(value+1);
         }).catch(err => {
             console.log(err);
         })
-    }
-//This function use to get total amount of cost of the cart items
-    function getTotal() {
-      return total;
     }
 
     //This function navigate to the checkout
 
     function continueToCheckout(){
-     history.push({
+        if(total>0){
+            history.push({
        pathname:"/checkout",
          state:{
         total:total
         }
-     })
+     })  
+        }else{
+            alert('No Item There To Checkout')
+        }
+   
     }
 
     //This function use to update product qty(decrement the count)
@@ -85,8 +85,7 @@ axios.get(`http://localhost:8070/carts/total/${localStorage.getItem("userid")}`)
             axios.patch(`http://localhost:8070/carts/update/${
                 p._id
             }`, product).then(res => {
-                alert('update the qty!!!')
-                window.location = "/cart"
+                setValue(value+1);
             }).catch(err => {
                 console.log(err);
             })
@@ -248,7 +247,6 @@ axios.get(`http://localhost:8070/carts/total/${localStorage.getItem("userid")}`)
                                     }
                             }
                             onClick={continueToCheckout}
-                            disabled={true}
                             >
                                 Continue
                             </Button>
