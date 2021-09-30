@@ -3,11 +3,12 @@ import { Card, Container, Form, Row, Col,Dropdown } from "react-bootstrap";
 import "../../../stylesheets/Orders.css";
 import {useEffect} from 'react';
 import axios from 'axios';
+import{useHistory} from 'react-router-dom';
 import { CSVLink } from 'react-csv';
 
 function Orders(props) {
   const [orders,setOrders]=useState([]);
-const array=['A','B']
+const history=useHistory();
   const fileHeaders = [
     {label: 'OrderID', key: '_id'},
     {label: 'UserID', key: 'user'},
@@ -25,6 +26,16 @@ setOrders(res.data);
   console.log("err=>"+err);
 })
   },[3]);
+
+
+  const viewOrder=(order)=>{
+  history.push({
+    pathname:`/admin/view-order`,
+    state:{
+      order:order
+    }
+  })
+  }
   
   return( <main >
         
@@ -75,7 +86,6 @@ setOrders(res.data);
         <th scope='col'>Order ID</th>
         <th></th>
         <th scope='col'>User ID</th>
-        <th scope='col'>Products</th>
         <th scope='col'>Status</th>
         <th scope='col'>Date</th>
         <th scope='col'>Amount</th>
@@ -85,7 +95,7 @@ setOrders(res.data);
       
     {orders.map((order,index)=>{
       return(
-        <tr>
+        <tr onClick={viewOrder.bind(this,order)}>
         <td>
         {order._id}
         </td>
@@ -93,18 +103,6 @@ setOrders(res.data);
         </td>
         <td>
         {order.user}
-        </td>
-        <td >
-        <ol>
-        {
-         order.products.map((product)=>{
-           return(
-<li>{product.title}({product.size})</li>
-           )
-         })
-
-        }
-        </ol>
         </td>
         <td >
         {order.status}
